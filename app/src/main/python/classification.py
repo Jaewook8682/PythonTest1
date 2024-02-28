@@ -132,6 +132,8 @@ def evaluate(*args):
     model.eval()
     print("11")
     x = data_input[0]
+    x = x.unsqueeze(0)
+    print(x.size())
     print("22")
     x = x.type(torch.float32).to(device)
     print("33")
@@ -141,7 +143,11 @@ def evaluate(*args):
     print("==================================")
     print(pred)
     print("--------------------------------")
-    result = get_multiple(pred[1].squeeze())
+    #result = get_multiple(pred[1].squeeze())
+    ################ Xiaochuan
+    classes = ['coughing', 'laughing', 'throat_cleaning', 'speaking', 'walking']
+    result = classes[pred[1].squeeze()]
+    #################################
     print(result)
     return 1
 
